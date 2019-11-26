@@ -6,7 +6,7 @@
 </head>
 
 <style>
-	button{
+	a{
 		height: 50px;
 		width: 50px;
 		border:none;
@@ -20,7 +20,7 @@
 		border-radius: 2px
 	}
 	
-	button:hover{
+	a:hover{
 		background-color: #f7f5f3;
 		border: 2px solid;
 	}
@@ -48,8 +48,8 @@
 	.button10:hover{color:#999999; border-color:#999999;}
 </style>
 
-<script type="text/javascript">  //"https://en.wikipedia.org/wiki/"
-	var table  = [ 
+<script type="text/javascript">
+	var table  = [
 		"H", "Hydrogen", "1.00794", 1, 1, 1,
 		"He", "Helium", "4.002602", 18, 1, 2,
 		"Li", "Lithium", "6.941", 1, 2, 3,
@@ -182,12 +182,12 @@
 	}
 	
 	function buildButton(id){
-		var button = document.createElement("BUTTON");
+		var button = document.createElement("a");
 		button.className = 'button' + table[(id*6) + 5];
 		button.onmouseover = showInfo(id);
-		//button.onmouseout = hideInfo(id);
+		button.onmouseout = hideInfo(id);
 		button.innerHTML = table[id*6] + '<br>' + (id + 1);
-		button.onclick = "window.location.href = 'https://en.wikipedia.org/wiki/" + table[(id*6) + 1] + "'";
+		button.href = "https://en.wikipedia.org/wiki/" + table[(id*6) + 1];
 		return button;
 	}
 	
