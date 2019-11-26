@@ -9,26 +9,31 @@
 	a{
 		height: 50px;
 		width: 50px;
-		border:none;
-		text-align:center;
+		outline: none;
+		border: none;
+		text-align: center;
 		text-decoration:none;
 		display:inline-block;
 		font-size:16px;
 		font-family: "verdana";
 		transition: 0.2s;
-		border-radius: 2px
 	}
 	
 	.elementButton{
 		color: white;
+		padding-top: 8px;
+		padding-left: 4px;
+		padding-right: 4px;
 	}
 	
 	.elementButton:hover{
 		background-color: #f7f5f3;
-		border: 2px solid;
+		outline: 2px solid;
+		outline-offset: -2px
 	}
 	
-	.invisible{background-color:#f0f0f5; color = black;}
+	.invisible{background-color:#f0f0f5; color: #f0f0f5;}
+	.invisibleShow{color: black;}
 	
 	.button1{background-color:#6fdc6f;}
 	.button2{background-color:#dc6fdc;}
@@ -41,16 +46,16 @@
 	.button9{background-color:#dc6f8b;}
 	.button10{background-color:#999999;}
 	
-	.button1:hover{color:#6fdc6f; border-color:#6fdc6f;}
-	.button2:hover{color:#dc6fdc; border-color:#dc6fdc;}
-	.button3:hover{color:#dc6f6f; border-color:#dc6f6f;}
-	.button4:hover{color:#dca66f; border-color:#dca66f;}
-	.button5:hover{color:#dcdc6f; border-color:#dcdc6f;}
-	.button6:hover{color:#c16fdc; border-color:#c16fdc;}
-	.button7:hover{color:#6fc1dc; border-color:#6fc1dc;}
-	.button8:hover{color:#6fdc6f; border-color:#6fdc6f;}
-	.button9:hover{color:#dc6f8b; border-color:#dc6f8b;}
-	.button10:hover{color:#999999; border-color:#999999;}
+	.button1:hover{color:#6fdc6f; outline-color:#6fdc6f;}
+	.button2:hover{color:#dc6fdc; outline-color:#dc6fdc;}
+	.button3:hover{color:#dc6f6f; outline-color:#dc6f6f;}
+	.button4:hover{color:#dca66f; outline-color:#dca66f;}
+	.button5:hover{color:#dcdc6f; outline-color:#dcdc6f;}
+	.button6:hover{color:#c16fdc; outline-color:#c16fdc;}
+	.button7:hover{color:#6fc1dc; outline-color:#6fc1dc;}
+	.button8:hover{color:#6fdc6f; outline-color:#6fdc6f;}
+	.button9:hover{color:#dc6f8b; outline-color:#dc6f8b;}
+	.button10:hover{color:#999999; outline-color:#999999;}
 </style>
 
 <script type="text/javascript">
@@ -178,12 +183,14 @@
 	
 	function showInfo(id){
 		var info = document.getElementById('info');
-		info.innerHTML = table[(id*6) + 1];
+		info.className = 'invisibleShow';
+		info.innerHTML = 
+			table[(id*6) + 1] + "br" + ;
 	}
 	
 	function hideInfo(){
 		var info = document.getElementById('info');
-		info.innerHTML = "Element";
+		info.className = 'invisible';
 	}
 	
 	function buildButton(id){
