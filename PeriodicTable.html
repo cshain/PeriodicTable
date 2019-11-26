@@ -10,7 +10,6 @@
 		height: 50px;
 		width: 50px;
 		border:none;
-		color:#f7f5f3;
 		text-align:center;
 		text-decoration:none;
 		display:inline-block;
@@ -20,10 +19,16 @@
 		border-radius: 2px
 	}
 	
-	a:hover{
+	.elementButton{
+		color: white;
+	}
+	
+	.elementButton:hover{
 		background-color: #f7f5f3;
 		border: 2px solid;
 	}
+	
+	.invisible{background-color:#f0f0f5; color = black;}
 	
 	.button1{background-color:#6fdc6f;}
 	.button2{background-color:#dc6fdc;}
@@ -176,18 +181,25 @@
 		info.innerHTML = table[(id*6) + 1];
 	}
 	
-	function hideInfo(id){
+	function hideInfo(){
 		var info = document.getElementById('info');
-		info.innerHTML = "";
+		info.innerHTML = "Element";
 	}
 	
 	function buildButton(id){
 		var button = document.createElement("a");
-		button.className = 'button' + table[(id*6) + 5];
-		button.onmouseover = showInfo(id);
-		button.onmouseout = hideInfo(id);
+		button.className = 'button' + table[(id*6) + 5] + " elementButton";
+		button.addEventListener("mouseover", function(){showInfo(id);});
+		button.addEventListener("mouseout", hideInfo);
 		button.innerHTML = table[id*6] + '<br>' + (id + 1);
 		button.href = "https://en.wikipedia.org/wiki/" + table[(id*6) + 1];
+		button.target = "_blank";
+		return button;
+	}
+	
+	function buildInvisible(){
+		var button = document.createElement("a");
+		button.className = 'invisible';
 		return button;
 	}
 	
@@ -198,8 +210,10 @@
 		for (var r = 1; r <= 10; r++){
 			var tr = document.createElement('TR');
 			ptable.appendChild(tr);
-			if(r == 8);
-				//Create invisible buttons
+			if(r == 8){
+				tr.appendChild(buildInvisible());
+				continue;
+			}
 			
 			for (var c = 1; c <= 18; c++){
 				var td = document.createElement('td');
@@ -232,7 +246,7 @@
 		<font size=6pt face="verdana">Periodic Table</p>
 	</h1>
 	
-	<p id = 'info'></p>
+	<a class = 'invisible' id = 'info'>Element</a>
 	
 	<table id = 'ptable' border = 0></table>
 	<font size = 2pt face = "Verdana">Developed by: Timothy Goodwin, Jacob Morris, Connor Shain, and Demertrius Steele</p>
